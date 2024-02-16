@@ -37,7 +37,7 @@ function Introduction() {
         <Summary />
         <Skills />
         <Education />
-        <nav className="navbar bg-body-secondary mb-3 mt-3"> 
+        <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
           <div className="container-fluid"> 
             <span className="navbar-brand mb-0 h1">Experience</span>
           </div>
@@ -62,7 +62,7 @@ function Introduction() {
 export function Skills() {
   return (
     <>
-        <nav className="navbar bg-body-secondary mb-3 mt-3"> 
+        <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
           <div className="container-fluid"> 
             <span className="navbar-brand mb-0 h1">Skills</span>
           </div>
@@ -77,7 +77,7 @@ export function Skills() {
 export function Education() {
   return (
     <>
-      <nav className="navbar bg-body-secondary mb-3 mt-3"> 
+      <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
         <div className="container-fluid"> 
           <span className="navbar-brand mb-0 h1">Education</span>
         </div>
@@ -109,14 +109,12 @@ export function Summary() {
 export function Picture() {
   return (
     <div className='text-center m-3'>
-    <img className='border-black rounded' height={110} src='/profile.png'/>
+    <img className='border-black rounded-circle' height={130} src='/profile.png'/>
     </div>
   );
 }
 
 function Experience({position, company, year, description}) {
-
-  
   return (
     <>
       <ul>
@@ -138,7 +136,7 @@ function Position ({position}) {
 
 function Company({company, year}) {
   return (
-    <li className='list-group-item'>{company} ({year})</li>
+    <li className='list-group-item text-success fst-italic'>Company: {company} ({year})</li>
   )
 }
 
