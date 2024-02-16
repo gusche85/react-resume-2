@@ -4,6 +4,14 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function Introduction() {
+  //links
+  const links = [
+    { icon: <i className="bi-file-code"></i>, web: "https://portfolio.juspna.com/", data: "My personal portfolio"},
+    { icon: <i className="bi-linkedin"></i>, web: "www.linkedin.com/in/giuseppina-sayan-1a32056b", data: "LinkedIn"},
+    { icon: <i className="bi-github"></i>, web: "https://github.com/gusche85", data: "Github"}
+  ];
+
+  //experiences
   const experiences = [
     { position: "Document Controller",
       company: "Sumatec Engineering & Construction Sdn. Bhd.",
@@ -21,18 +29,15 @@ function Introduction() {
       year: "2008-2009",
       description: ["Assisting the Technical Assistant with general administrative duties, while performing document control tasks to facilitate project progression."]
     }];
-  
+
+  //resuma layout
   return (
     <div className="d-flex m-5 justify-content-center align-items-center">
     <main className='border border-black rounded'>
       <div className='container-fluid m-7 p-3'>
       <h1 className='fw-bold text-center'>Giuseppina Sherry Sayan</h1>
         <Picture />
-        <p className="text-center">
-           <i className="bi-file-code"></i><a href="https://portfolio.juspna.com/" className="link-primary p-2">My personal portfolio</a>
-          <i className="bi-linkedin"></i><a href="www.linkedin.com/in/giuseppina-sayan-1a32056b" className="link-primary p-2">LinkedIn</a>
-          <i className="bi-github"></i><a href="https://github.com/gusche85" className="link-primary p-2">Github</a>
-        </p>
+        <BioLinkDisplay link={links} />
         <hr />
         <Summary />
         <Skills />
@@ -51,15 +56,25 @@ function Introduction() {
             description={experience.description}
           />
         ))}
-        
-
     </div>
     </main>
     </div>
   )
 }
 
-export function Skills() {
+function BioLinkDisplay({link}) {
+  return (
+    <p className="text-center">
+    {link.map((img, index) => (
+      <div key={index} className='list-inline-item align-items-center'>
+        {img.icon}<a href={img.web} className="link-primary p-2">{img.data} </a>
+      </div>
+    ))}
+    </p>
+  )
+}
+
+function Skills() {
   return (
     <>
         <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
@@ -74,7 +89,7 @@ export function Skills() {
   )
 }
 
-export function Education() {
+function Education() {
   return (
     <>
       <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
@@ -97,7 +112,7 @@ export function Education() {
   )
 }
 
-export function Summary() {
+function Summary() {
   return (
     <>
       <p className='mt-4 fw-bold'>Summary:</p>
@@ -106,7 +121,7 @@ export function Summary() {
    )
 }
 
-export function Picture() {
+ function Picture() {
   return (
     <div className='text-center m-3'>
     <img className='border-black rounded-circle' height={130} src='/profile.png'/>
