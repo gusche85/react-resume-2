@@ -4,8 +4,25 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function Introduction() {
+  const experiences = [
+    { position: "Document Controller",
+      company: "Sumatec Engineering & Construction Sdn. Bhd.",
+      year: "2010",
+      description: ["Managed the ABF Plant Rejuvenation Project Main Construction Package, ensuring smooth communication and coordination among stakeholders.", "Ensured compliance with project requirements through systematic file management practices for efficient document retrieval."]
+    },
+    { 
+      position: "Document Control Coordinator",
+      company: "Air Energy Consulting (M) Sdn. Bhd.",
+      year: "2009",
+      description: ["Overseeing the organization and management of documents and drawings for the Construction of Murphy Gas Plant Phase 1 Bintulu Onshore Receiving Facility project."]
+    },
+    { position: "General Clerk",
+      company: "K-Frontiers Sdn. Bhd.",
+      year: "2008-2009",
+      description: ["Assisting the Technical Assistant with general administrative duties, while performing document control tasks to facilitate project progression."]
+    }];
+  
   return (
-
     <div className="d-flex m-5 justify-content-center align-items-center">
     <main className='border border-black rounded'>
       <div className='container-fluid m-7 p-3'>
@@ -20,7 +37,20 @@ function Introduction() {
         <Summary />
         <Skills />
         <Education />
-        <Experience />
+        <nav className="navbar bg-body-secondary mb-3 mt-3"> 
+          <div className="container-fluid"> 
+            <span className="navbar-brand mb-0 h1">Experience</span>
+          </div>
+        </nav>
+        {experiences.map((experience, index) => (
+          <Experience 
+            key={index}
+            position={experience.position}
+            company={experience.company}
+            year={experience.year}
+            description={experience.description}
+          />
+        ))}
         
 
     </div>
@@ -84,13 +114,17 @@ export function Picture() {
   );
 }
 
-export function Experience({position, company, year, description}) {
+function Experience({position, company, year, description}) {
+
+  
   return (
     <>
       <ul>
       <Position position = {position} />
       <Company company = {company} year={year} />
-      <Description description = {description} />
+        {description.map((description, index) => (
+          <Description key={index} description={description} />
+        ))}
       </ul>
     </>
   )
@@ -111,7 +145,7 @@ function Company({company, year}) {
 function Description({description}) {
   return (
     <ul>
-      <li> {description}</li> <br />
+      <li> {description}</li>
     </ul>
   )
 }
