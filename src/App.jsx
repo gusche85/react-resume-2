@@ -20,6 +20,7 @@ function Introduction() {
         <Summary />
         <Skills />
         <Education />
+        <Experience />
         
 
     </div>
@@ -83,6 +84,35 @@ export function Picture() {
   );
 }
 
+export function Experience({position, company, year, description}) {
+  return (
+    <>
+      <ul>
+      <Position position = {position} />
+      <Company company = {company} year={year} />
+      <Description description = {description} />
+      </ul>
+    </>
+  )
+}
 
+function Position ({position}) {
+  return (
+    <li className='fw-bold'>{position} </li>
+  )
+}
 
+function Company({company, year}) {
+  return (
+    <li className='list-group-item'>{company} ({year})</li>
+  )
+}
+
+function Description({description}) {
+  return (
+    <ul>
+      <li> {description}</li> <br />
+    </ul>
+  )
+}
 export default Introduction;
