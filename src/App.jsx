@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export function Introduction() {
+function Introduction() {
   //links
   const links = [
     { icon: <i className="bi-file-code"></i>, web: "https://portfolio.juspna.com/", data: "My personal portfolio"},
@@ -11,9 +11,9 @@ export function Introduction() {
     { icon: <i className="bi-github"></i>, web: "https://github.com/gusche85", data: "Github"}
   ];
 
-  const displayCourse = [
-    { uni: "abc", item: "2009", crs: "ddddd"},
-    { uni: "adf", item: "123-333", crs: "vff"}
+  const educationData = [
+    { institution: 'Universiti Tun Hussein Onn', year: '2004 - 2007', degree: 'Bachelor of Information Technology (Hons)' },
+    { institution: 'Sigma School', year: '2023', degree: 'Software Development Program' },
   ];
 
   //experiences
@@ -46,22 +46,7 @@ export function Introduction() {
         <hr />
         <Summary />
         <Skills />
-        <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
-              <div className="container-fluid"> 
-                <span className="navbar-brand mb-0 h1">Education</span>
-              </div>
-            </nav>
-           
-              
-              {displayCourse.map((items, index) => (
-                <Education 
-                  key={index} 
-                  uni={items.uni}
-                  item={items.item}
-                />
-              ))}
-            
-      
+        <Education educationData={educationData} />
         <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
           <div className="container-fluid"> 
             <span className="navbar-brand mb-0 h1">Experience</span>
@@ -109,29 +94,32 @@ function Skills() {
   )
 }
 
-function University({uni, year}) {
-  return (
-<ol>
-  <li>{uni} ({year})</li>
-  </ol>
-  )
-}
-
-function Education({uni, year, display}) {
+function Education({ educationData }) {
   return (
     <>
-      <University uni={uni} year={year} />
-      {display.map((items, index) => (
-        <Course key={index} course={items} />
-      ))}
+      <nav className="navbar bg-success-subtle mb-3 mt-3">
+        <div className="container-fluid">
+          <span className="navbar-brand mb-0 h1">Education</span>
+        </div>
+      </nav>
+      <ol className='mb-4'>
+        {educationData.map((eduItem, index) => (
+          <EducationItem key={index} {...eduItem} />
+        ))}
+      </ol>
     </>
-  )
+  );
 }
 
-function Course({course}) {
+function EducationItem({ institution, year, degree, program }) {
   return (
-    <li>{course}</li>
-  )
+    <li>
+      {institution} ({year})
+      <ul>
+        <li>{degree}</li>
+      </ul>
+    </li>
+  );
 }
 
 function Summary() {
