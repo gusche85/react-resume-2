@@ -111,7 +111,7 @@ function Education({ educationData }) {
   );
 }
 
-function EducationItem({ institution, year, degree, program }) {
+function EducationItem({ institution, year, degree}) {
   return (
     <li>
       {institution} ({year})
