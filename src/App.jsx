@@ -3,12 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-function Introduction() {
+export function Introduction() {
   //links
   const links = [
     { icon: <i className="bi-file-code"></i>, web: "https://portfolio.juspna.com/", data: "My personal portfolio"},
     { icon: <i className="bi-linkedin"></i>, web: "www.linkedin.com/in/giuseppina-sayan-1a32056b", data: "LinkedIn"},
     { icon: <i className="bi-github"></i>, web: "https://github.com/gusche85", data: "Github"}
+  ];
+
+  const displayCourse = [
+    { uni: "abc", item: "2009", crs: "ddddd"},
+    { uni: "adf", item: "123-333", crs: "vff"}
   ];
 
   //experiences
@@ -41,7 +46,22 @@ function Introduction() {
         <hr />
         <Summary />
         <Skills />
-        <Education />
+        <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
+              <div className="container-fluid"> 
+                <span className="navbar-brand mb-0 h1">Education</span>
+              </div>
+            </nav>
+           
+              
+              {displayCourse.map((items, index) => (
+                <Education 
+                  key={index} 
+                  uni={items.uni}
+                  item={items.item}
+                />
+              ))}
+            
+      
         <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
           <div className="container-fluid"> 
             <span className="navbar-brand mb-0 h1">Experience</span>
@@ -89,26 +109,28 @@ function Skills() {
   )
 }
 
-function Education() {
+function University({uni, year}) {
+  return (
+<ol>
+  <li>{uni} ({year})</li>
+  </ol>
+  )
+}
+
+function Education({uni, year, display}) {
   return (
     <>
-      <nav className="navbar bg-success-subtle rounded mb-3 mt-3"> 
-        <div className="container-fluid"> 
-          <span className="navbar-brand mb-0 h1">Education</span>
-        </div>
-      </nav>
-      <ol className='mb-4'>
-        <li>Universiti Tun Hussein Onn (2004 - 2007)</li>
-        <ul>
-        <li>Bachelor of Information Technology (Hons)</li>
-        </ul>
-        <li>Sigma School (2023)</li>
-        <ul>
-        <li>Software Development Program</li>
-        </ul>
-      </ol>
+      <University uni={uni} year={year} />
+      {display.map((items, index) => (
+        <Course key={index} course={items} />
+      ))}
+    </>
+  )
+}
 
-   </>
+function Course({course}) {
+  return (
+    <li>{course}</li>
   )
 }
 
@@ -129,6 +151,7 @@ function Summary() {
   );
 }
 
+//experience
 function Experience({position, company, year, description}) {
   return (
     <>
